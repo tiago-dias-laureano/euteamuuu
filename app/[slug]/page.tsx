@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "motion/react"; // Ajuste do import do motion
-import { useParams } from "next/navigation";
+// import { useParams } from "next/navigation";
 
 import aws from "aws-sdk";
 
