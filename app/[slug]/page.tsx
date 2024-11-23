@@ -1,14 +1,13 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion } from "motion/react"; // Ajuste do import do motion
-// import { useParams } from "next/navigation";
+import { motion } from "motion/react";
 
 import Image from "next/image";
 import supabase from "../supabase";
 
 export default function QRCode() {
-  const [imageUrl, setImageUrl] = useState(""); // Estado para guardar o URL da imagem
+  const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
     async function listFiles() {
@@ -17,20 +16,16 @@ export default function QRCode() {
       if (error) {
         console.error("Erro ao listar arquivos:", error);
       } else {
-        // Verifique se há arquivos no bucket e obtenha o caminho do primeiro arquivo (exemplo)
         if (data.length > 0) {
-          // Aqui estamos pegando o primeiro arquivo da lista
           const filePath = data[0].name;
-
-          // Gerar URL pública ou URL assinada, dependendo da configuração do seu bucket
           const { data: response, error: urlError } = await supabase.storage
             .from("euteamuu")
-            .createSignedUrl(filePath, 60); // Link válido por 60 segundos (se for privado)
+            .createSignedUrl(filePath, 3000);
 
           if (urlError) {
             console.error("Erro ao gerar URL assinada:", urlError);
           } else {
-            setImageUrl(response.signedUrl); // Atualiza o estado com a URL da imagem
+            setImageUrl(response.signedUrl);
           }
         }
       }
@@ -45,11 +40,9 @@ export default function QRCode() {
         <Image src="/logo.svg" alt="euteamuuu logo" width={200} height={100} />
       </div>
 
-      {/* Foto + Contadores */}
       <main className="container max-w-3xl mx-auto mt-10 text-center">
         <div className="text-[#BF2F32] font-bold text-4xl">Tiago & Raiane</div>
         <div className="relative mx-auto rounded-lg shadow-lg p-6">
-          {/* Exibir a imagem dinâmica */}
           {imageUrl && (
             <>
               <Image
@@ -71,7 +64,6 @@ export default function QRCode() {
             </>
           )}
           <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 mt-6">
-            {/* Card de contadores */}
             {[
               { label: "Anos", value: "4" },
               { label: "Meses", value: "1" },
@@ -95,7 +87,6 @@ export default function QRCode() {
           </div>
         </div>
 
-        {/* Mensagem personalizada */}
         <div className="mt-8">
           <p className="text-lg italic text-gray-300">
             &quot;Oi amor, passando pra falar que te amo uma galáxia! Que daqui
@@ -106,7 +97,6 @@ export default function QRCode() {
         </div>
       </main>
 
-      {/* Footer */}
       <footer className="mt-14 text-center">
         <p className="text-sm text-gray-400">
           © 2024 euteamuuu. Todos os direitos reservados.
