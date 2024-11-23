@@ -28,7 +28,12 @@ export default function Home() {
         <div className="container max-w-[1280px] mx-auto px-4">
           <nav className="pt-8">
             <div className="logo flex justify-center">
-              <Image src="/logo.svg" alt="euteamuuu logo" width={200} />
+              <Image
+                src="/logo.svg"
+                alt="euteamuuu logo"
+                width={200}
+                height={100}
+              />
             </div>
           </nav>
 
