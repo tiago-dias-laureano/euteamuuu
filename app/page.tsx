@@ -2,6 +2,7 @@
 
 import { useScroll } from "motion/react";
 import { motion } from "motion/react";
+import Image from "next/image";
 
 export default function Home() {
   const { scrollYProgress } = useScroll();
@@ -27,7 +28,7 @@ export default function Home() {
         <div className="container max-w-[1280px] mx-auto px-4">
           <nav className="pt-8">
             <div className="logo flex justify-center">
-              <img src="/logo.svg" alt="euteamuuu logo" width={200} />
+              <Image src="/logo.svg" alt="euteamuuu logo" width={200} />
             </div>
           </nav>
 

@@ -5,6 +5,7 @@ import { motion } from "motion/react"; // Ajuste do import do motion
 // import { useParams } from "next/navigation";
 
 import aws from "aws-sdk";
+import Image from "next/image";
 
 const s3 = new aws.S3({
   endpoint: "https://s3.filebase.com",
@@ -47,7 +48,7 @@ export default function QRCode() {
   return (
     <div className="bg-gradient-to-b from-[#1E2637] via-[#232A42] to-[#1E2637] min-h-screen text-white">
       <div className="logo flex justify-center pt-8">
-        <img src="/logo.svg" alt="euteamuuu logo" width={200} />
+        <Image src="/logo.svg" alt="euteamuuu logo" width={200} />
       </div>
 
       {/* Foto + Contadores */}
@@ -56,7 +57,7 @@ export default function QRCode() {
         <div className="relative mx-auto rounded-lg shadow-lg p-6">
           {/* Exibir a imagem dinâmica */}
           {imageUrl && (
-            <img
+            <Image
               src={imageUrl} // Exibe o placeholder caso o URL ainda não esteja pronto
               alt="Foto de casal"
               className="rounded-lg mx-auto shadow-md"
@@ -90,9 +91,11 @@ export default function QRCode() {
         {/* Mensagem personalizada */}
         <div className="mt-8">
           <p className="text-lg italic text-gray-300">
-            "Oi amor, passando pra falar que te amo uma galáxia! Que daqui 20,
-            30 anos possamos voltar aqui e nosso tempo juntos continue sendo
-            contado!"
+            <p className="text-lg italic text-gray-300">
+              &quot;Oi amor, passando pra falar que te amo uma galáxia! Que
+              daqui 20, 30 anos possamos voltar aqui e nosso tempo juntos
+              continue sendo contado!&quot;
+            </p>
           </p>
           <p className="mt-4 font-bold text-[#BF2F32]">Te amo demais ❤️</p>
         </div>
