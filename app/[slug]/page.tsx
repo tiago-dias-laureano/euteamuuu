@@ -6,7 +6,6 @@ import { motion } from "motion/react"; // Ajuste do import do motion
 
 import Image from "next/image";
 import supabase from "../supabase";
-import { div } from "motion/react-client";
 
 export default function QRCode() {
   const [imageUrl, setImageUrl] = useState(""); // Estado para guardar o URL da imagem
