@@ -14,7 +14,7 @@ const s3 = new aws.S3({
 });
 
 export default function QRCode() {
-  const { slug } = useParams(); // pegar o slug params
+  // const { slug } = useParams(); // pegar o slug params
   const [imageUrl, setImageUrl] = useState(""); // Estado para guardar o URL da imagem
 
   useEffect(() => {
