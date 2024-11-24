@@ -19,3 +19,23 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+#heart-container .heart {
+  position: absolute;
+  top: 100%; /* Começa abaixo da tela */
+  animation: float 5s linear infinite;
+  pointer-events: none;
+  opacity: 0.8;
+  color: red;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}

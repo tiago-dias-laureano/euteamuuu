@@ -23,6 +23,7 @@ export default function Home() {
   ];
   return (
     <>
+      <div id="heart-container"></div>
       <div className="bg-gradient-to-b from-[#1E2637] via-[#232A42] to-[#1E2637] md:h-screen">
         <motion.div style={{ scaleX: scrollYProgress }} />
         <div className="container max-w-[1280px] mx-auto px-4">
@@ -71,10 +72,10 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.2 }}
-                  className="relative bg-[#232A42] p-6 rounded-lg shadow-[0px_-2px_20px_5px_#BF2F32] border border-[#BF2F32]/20 flex flex-col justify-between h-full"
+                  className="relative bg-[#232A42] p-6 rounded-lg shadow-[0px_-2px_20px_2px_#BF2F32] border border-[#BF2F32]/20 flex flex-col justify-between h-full"
                 >
                   {index === 1 && (
-                    <div className="absolute top-0 right-0 bg-[#BF2F32] text-white text-xs font-bold py-1 px-3 rounded-bl-lg">
+                    <div className="absolute top-0 right-0 bg-[#BF2F32] text-white text-xs font-bold py-1 px-4 rounded-bl-lg">
                       Mais escolhido
                     </div>
                   )}
