@@ -13,6 +13,7 @@ export default function QRCode() {
     async function listFiles() {
       try {
         const { data, error } = await supabase.storage.from("euteamuu").list();
+        console.log(data);
 
         if (error) {
           console.error("Erro ao listar arquivos:", error);
@@ -39,7 +40,7 @@ export default function QRCode() {
   }, []);
 
   useEffect(() => {
-    const heartContainer = document.getElementById("heart-container");
+    const heartContainer = document.getElementById("heart-container")!;
 
     function createHeart() {
       const emojis = ["🥰", "❤️"];
@@ -51,9 +52,7 @@ export default function QRCode() {
       heart.style.animationDuration = "2s";
       heart.style.fontSize = Math.random() * 3 + "rem";
 
-      if (heartContainer) {
-        heartContainer.appendChild(heart);
-      }
+      heartContainer.appendChild(heart);
 
       setTimeout(() => heart.remove(), 3000);
     }
@@ -83,7 +82,10 @@ export default function QRCode() {
             />
           </div>
 
-          <main className="container max-w-3xl mx-auto mt-10 text-center">
+          <main className="container max-w-3xl mx-auto mt-4 text-center">
+            <div className="text-2xl mb-4 text-[#BF2F32] font-bold">
+              João & Maria
+            </div>
             <div className="relative mx-auto rounded-lg shadow-lg">
               {imageUrl && (
                 <motion.div
@@ -92,7 +94,7 @@ export default function QRCode() {
                   className="rounded-lg overflow-hidden shadow-md"
                 >
                   <Image
-                    src={imageUrl}
+                    src={"/example.jpeg"}
                     alt="Foto de casal"
                     className="rounded-lg hidden md:block mx-auto shadow-md"
                     width={500}
@@ -100,7 +102,7 @@ export default function QRCode() {
                     objectFit="cover"
                   />
                   <Image
-                    src={imageUrl}
+                    src={"/example.jpeg"}
                     alt="Foto de casal"
                     className="rounded-lg md:hidden mx-auto shadow-md"
                     width={300}
