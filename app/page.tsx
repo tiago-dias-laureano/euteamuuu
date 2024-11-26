@@ -1,71 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { motion } from "motion/react";
 import Image from "next/image";
-import supabase from "./supabase";
 
 export default function Home() {
-  const router = useRouter();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    // Verifica se o usuário já está logado
-    const checkSession = async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
-      if (session) {
-        // Se a sessão existir, redireciona para o dashboard
-        setIsAuthenticated(true);
-        router.push("/dashboard"); // Redireciona para o dashboard
-      }
-    };
-
-    checkSession(); // Chama a função ao carregar a página
-  }, [router]);
-
-  const handleLoginClick = () => {
-    // Abre o modal para login/registro
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    // Fecha o modal
-    setIsModalOpen(false);
-  };
-
-  const handleLogin = async (email, password) => {
-    // Tente fazer o login aqui
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      console.error("Erro ao fazer login:", error.message);
-    } else {
-      console.log("Usuário logado com sucesso:", data);
-      // Após o login, redireciona para o dashboard
-      router.push("/dashboard");
-    }
-  };
-
-  const handleRegister = async (email, password) => {
-    // Tente fazer o registro aqui
-    const { data, error } = await supabase.auth.signUp({ email, password });
-
-    if (error) {
-      console.error("Erro ao registrar usuário:", error.message);
-    } else {
-      console.log("Usuário registrado com sucesso:", data);
-      // Após o registro, redireciona para o dashboard
-      router.push("/dashboard");
-    }
-  };
-
   const data = [
     {
       text: "Plano 1",
@@ -116,7 +54,6 @@ export default function Home() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               className="bg-gradient-to-r from-red-500 to-pink-500 px-8 md:px-20 py-4 md:py-6 mt-10 text-white font-bold rounded-md hover:from-red-400 hover:to-pink-400 transition-all"
-              onClick={handleLoginClick} // Ao clicar, abre o modal de login
             >
               Crie agora o seu <strong>euteamuuu</strong>!
             </motion.button>
@@ -150,7 +87,6 @@ export default function Home() {
                   <button
                     type="button"
                     className="bg-[#BF2F32] px-4 py-2 mt-6 text-white rounded-md hover:bg-[#BF2F32]/80 shadow-lg"
-                    onClick={handleLoginClick} // Abre o modal de login
                   >
                     Escolher esse!
                   </button>
@@ -160,38 +96,6 @@ export default function Home() {
           </section>
         </div>
       </div>
-
-      {/* Modal de Login/Registro */}
-      {isModalOpen && (
-        <div className="modal fixed top-1/2 w-1/2 h-1/2 -translate-x-1/2 -translate-y-1/2 left-1/2 bg-white z-50">
-          <div className="modal-content flex items-center justify-center">
-            <button onClick={handleCloseModal}>Fechar</button>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleLogin(e.target.email.value, e.target.password.value);
-              }}
-            >
-              <input type="email" name="email" placeholder="Email" required />
-              <input
-                type="password"
-                name="password"
-                placeholder="Senha"
-                required
-              />
-              <button type="submit">Entrar</button>
-            </form>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleRegister(e.target.email.value, e.target.password.value);
-              }}
-            >
-              <button type="submit">Registrar</button>
-            </form>
-          </div>
-        </div>
-      )}
     </>
   );
 }
