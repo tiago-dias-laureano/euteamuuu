@@ -1,101 +1,44 @@
-"use client";
-
-import { motion } from "motion/react";
-import Image from "next/image";
+import CardsSection from "./components/CardsSection";
+import Footer from "./components/Footer";
+import Logo from "./components/Logo";
+import Phone from "./components/Phone";
 
 export default function Home() {
-  const data = [
-    {
-      text: "Plano 1",
-      label: "QRCode, 5 fotos e música.",
-      value: "simples",
-      desc: `Por apenas R$ 24,90, você pode criar uma página exclusiva com até 5 fotos, adicionar uma música especial direto do YouTube e garantir que sua página fique guardada para sempre no nosso site. Tudo isso para eternizar o seu amor de forma única! 💖`,
-    },
-    {
-      text: "Plano 2",
-      label:
-        "QRCode, Galeria de fotos, música, linha do tempo e descontos na lojinha do amor.",
-      value: "avancado",
-      desc: `Eleve a experiência do seu amor por apenas R$ 34,90! Tenha acesso a uma página ilimitada de fotos, adicione sua música preferida do YouTube, crie uma linha do tempo personalizada, adicione lembretes de marcos importantes, inclua um vídeo emocionante de declaração e aproveite muitas outras novidades incríveis que estão por vir. Transforme o ordinário em algo extraordinário! 🌟`,
-    },
-  ];
-
   return (
-    <>
-      <div id="heart-container"></div>
-      <div className="bg-gradient-to-b from-[#1E2637] via-[#232A42] to-[#1E2637] md:h-screen">
-        <div className="container max-w-[1280px] mx-auto px-4">
-          <nav className="pt-8">
-            <div className="logo flex justify-center">
-              <Image
-                src="/logo.svg"
-                alt="euteamuuu logo"
-                width={200}
-                height={100}
-              />
-            </div>
-          </nav>
+    <div className="bg-gradient-to-b from-[#1E2637] via-[#232A42] to-[#1E2637] p-4 md:p-0 ">
+      <header className="min-h-screen flex container justify-center mx-auto flex-col md:mb-100">
+        <div className="flex md:flex-row flex-col items-center">
+          <div className="space-y-8 md:w-[55%]">
+            <Logo />
 
-          <section className="py-14 flex flex-col items-center px-2 md:px-0 text-center">
-            <h1 className="md:text-6xl text-3xl font-bold text-[#BF2F32]">
+            <h1 className="text text-3xl md:text-4xl text-center md:text-left font-bold text-[#BF2F32]">
               Uma nova maneira de dizer: Eu te amo! 🥰
             </h1>
-
-            <p className="text-white text-lg md:text-xl max-w-[800px] mt-4 md:mt-10">
+            <div className="description text-center md:text-left text-gray-200 mt-4">
               Crie uma página exclusiva para celebrar o amor de vocês!
               Cadastre-se agora e tenha acesso a uma página personalizada com
               uma linha do tempo especial e totalmente customizável, um contador
               que registra os dias, meses e anos juntos, lembretes e
               notificações de momentos importantes, além de um QR Code para
-              compartilhar essa experiência única com seu parceiro. 💕
-            </p>
-
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className="bg-gradient-to-r from-red-500 to-pink-500 px-8 md:px-20 py-4 md:py-6 mt-10 text-white font-bold rounded-md hover:from-red-400 hover:to-pink-400 transition-all"
-            >
-              Crie agora o seu <strong>euteamuuu</strong>!
-            </motion.button>
-          </section>
-
-          <section className="mt-14">
-            <h2 className="text-3xl text-center text-[#BF2F32] font-bold mb-8 ">
-              Planos disponíveis
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {data.map((plan, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.2 }}
-                  className="relative bg-[#232A42] p-6 rounded-lg shadow-[0px_-2px_20px_2px_#BF2F32] border border-[#BF2F32]/20 flex flex-col justify-between h-full"
-                >
-                  {index === 1 && (
-                    <div className="absolute top-0 right-0 bg-[#BF2F32] text-white text-xs font-bold py-1 px-4 rounded-bl-lg">
-                      Mais escolhido
-                    </div>
-                  )}
-
-                  <div>
-                    <h3 className="text-xl text-white font-bold">
-                      {plan.label}
-                    </h3>
-                    <p className="text-white text-sm mt-4">{plan.desc}</p>
-                  </div>
-                  <button
-                    type="button"
-                    className="bg-[#BF2F32] px-4 py-2 mt-6 text-white rounded-md hover:bg-[#BF2F32]/80 shadow-lg"
-                  >
-                    Escolher esse!
-                  </button>
-                </motion.div>
-              ))}
+              compartilhar essa experiência única com seu parceiro.
+              <br />
+              <br />
+              Ah, e não pense que é só para declaração de amor não, hein! Aqui
+              você pode dedicar aos aniversariantes, amigos e muito mais. Temos
+              personalização de tema para cada ocasião especial.
             </div>
-          </section>
+          </div>
+
+          <Phone />
         </div>
-      </div>
-    </>
+
+        <button className="bg-gradient-to-r from-red-500 to-[#BF2F32] p-4 rounded-lg text-lg mt-8 hover:opacity-90 transition-opacity duration-300">
+          Crie agora o seu <strong>euteamuuu ❤️</strong>
+        </button>
+      </header>
+
+      <CardsSection />
+      <Footer />
+    </div>
   );
 }
