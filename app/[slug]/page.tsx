@@ -37,6 +37,8 @@ export default function QRCode() {
       minutes: totalMinutes,
     });
 
+  };
+
     calculateTimeElapsed();
 
     // Atualizar a cada minuto
