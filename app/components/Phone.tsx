@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Phone() {
   return(
-    <div className="md:w-[45%] w-full">
+    <div className="md:w-[45%]">
       <Image
         src="/hero.png"
         alt="image example"

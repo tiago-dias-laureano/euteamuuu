@@ -1,12 +1,13 @@
 import Phone from "../components/Phone";
 import Logo from "../components/Logo";
 import CardsSection from "../components/CardsSection";
+import Footer from "../components/Footer";
 
 export default function LP() {
   return (
     <>
       <div className="bg-gradient-to-b from-[#1E2637] via-[#232A42] to-[#1E2637] p-4 md:p-0 ">
-        <header className="h-screen flex container justify-center mx-auto flex-col">
+        <header className="h-screen flex container justify-center mx-auto flex-col md:mb-100">
           <div className="flex md:flex-row flex-col items-center">
             <div className="space-y-8 md:w-[55%]">
               <Logo />
@@ -31,12 +32,14 @@ export default function LP() {
             
             <Phone />
           </div>
+
           <button className="bg-gradient-to-r from-red-500 to-[#BF2F32] p-4 rounded-lg text-lg">
             Crie agora o seu <strong>euteamuuu ❤️</strong>
           </button>
         </header>
 
         <CardsSection />
+        <Footer />
       </div>
     </>
   );
