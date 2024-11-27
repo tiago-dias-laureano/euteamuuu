@@ -21,7 +21,7 @@ export default function QRCode() {
 
   useEffect(() => {
     const calculateTimeElapsed = () => {
-    const startDate = new Date("2023-06-26");
+    const startDate = new Date("2023-02-26");
     const now = new Date();
 
     const totalMilliseconds = now.getTime() - startDate.getTime();
@@ -163,7 +163,8 @@ export default function QRCode() {
               Compartilhando momentos juntos há
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-2 p-4">
-              {[
+              {
+              [
                           { label: "Anos", value: timeElapsed.years },
                                     { label: "Meses", value: timeElapsed.months },
                                               { label: "Dias", value: timeElapsed.days },
