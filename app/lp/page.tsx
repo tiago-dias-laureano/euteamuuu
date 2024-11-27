@@ -35,14 +35,7 @@ export default function LP() {
               </div>
             </div>
             <div className="md:w-[45%] w-full">
-              <Image
-                src="/hero.png"
-                alt="image example"
-                layout="intrinsic"
-                width={2500}
-                height={2500}
-                objectFit="contain" // Ajusta o tamanho dentro do container
-              />
+              <img src="/hero.png" alt="image example" />
             </div>
           </div>
           <button className="bg-gradient-to-r from-red-500 to-[#BF2F32] p-4 rounded-lg text-lg">
