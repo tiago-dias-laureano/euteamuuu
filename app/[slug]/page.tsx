@@ -93,7 +93,7 @@ export default function QRCode() {
             <div className="text-2xl mb-2 text-[#BF2F32] font-bold">
               João & Maria
             </div>
-            <div className="relative mx-auto rounded-xl shadow-lg">
+            <div className=" rounded-xl">
               {imageUrls.length > 0 ? (
                 <Swiper
                   modules={[Autoplay]}
@@ -104,14 +104,18 @@ export default function QRCode() {
                 >
                   {imageUrls.map((url, index) => (
                     <SwiperSlide key={index}>
-                      <Image
-                        src={url}
-                        alt={`Foto ${index + 1}`}
-                        className="rounded-xl shadow-md p-4"
-                        width={500}
-                        height={300}
-                        objectFit="cover"
-                      />
+                      <SwiperSlide key={index}>
+                        <div className="flex justify-center items-center p-4 md:p-0">
+                          <Image
+                            src={url}
+                            alt={`Foto ${index + 1}`}
+                            className="rounded-xl shadow-md"
+                            width={400}
+                            height={300}
+                            objectFit="cover"
+                          />
+                        </div>
+                      </SwiperSlide>
                     </SwiperSlide>
                   ))}
                 </Swiper>
@@ -120,7 +124,7 @@ export default function QRCode() {
               )}
             </div>
 
-            <div className="pt-10 font-bold text-xl lg:text-2xl">
+            <div className="pt-6 font-bold text-xl lg:text-2xl">
               Compartilhando momentos juntos há
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-2 p-4">
