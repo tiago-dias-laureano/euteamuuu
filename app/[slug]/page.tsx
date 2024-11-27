@@ -91,7 +91,7 @@ export default function QRCode() {
 
           <main className="container max-w-3xl mx-auto mt-4 text-center">
             <div className="text-2xl mb-2 text-[#BF2F32] font-bold">
-              João & Maria
+              Tiago & Raiane
             </div>
             <div className=" rounded-xl">
               {imageUrls.length > 0 ? (
