@@ -164,10 +164,10 @@ export default function QRCode() {
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-2 p-4">
               {[
-                { label: "Anos", value: "4" },
-                { label: "Meses", value: "1" },
-                { label: "Dias", value: "25" },
-                { label: "Minutos", value: "25" },
+                          { label: "Anos", value: timeElapsed.years },
+                                    { label: "Meses", value: timeElapsed.months },
+                                              { label: "Dias", value: timeElapsed.days },
+                                                        { label: "Minutos", value: timeElapsed.minutes },
               ].map((counter, index) => (
                 <motion.div
                   key={index}
