@@ -12,6 +12,39 @@ export default function QRCode() {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [timeElapsed, setTimeElapsed] = useState({
+        years: 0,
+        months: 0,
+        days: 0,
+        minutes: 0,
+  });
+
+  useEffect(() => {
+    const calculateTimeElapsed = () => {
+    const startDate = new Date("2023-06-26");
+    const now = new Date();
+
+    const totalMilliseconds = now.getTime() - startDate.getTime();
+    const totalMinutes = Math.floor(totalMilliseconds / (1000 * 60));
+    const totalDays = Math.floor(totalMilliseconds / (1000 * 60 * 60 * 24));
+    const totalMonths = Math.floor(totalDays / 30.44); // Média de dias em um mês
+    const totalYears = Math.floor(totalMonths / 12);
+
+    setTimeElapsed({
+      years: totalYears,
+      months: totalMonths % 12, // Resto de meses
+      days: totalDays % 30, // Resto de dias
+      minutes: totalMinutes,
+    });
+
+    calculateTimeElapsed();
+
+    // Atualizar a cada minuto
+        const interval = setInterval(calculateTimeElapsed, 60000);
+            return () => clearInterval(interval);
+              }, []);
+
+
   useEffect(() => {
     async function listFiles() {
       try {
