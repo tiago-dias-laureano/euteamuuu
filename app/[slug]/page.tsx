@@ -13,39 +13,51 @@ export default function QRCode() {
   const [isLoading, setIsLoading] = useState(true);
 
   const [timeElapsed, setTimeElapsed] = useState({
-        years: 0,
-        months: 0,
-        days: 0,
-        minutes: 0,
+    years: 0,
+    months: 0,
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
   });
 
   useEffect(() => {
     const calculateTimeElapsed = () => {
-    const startDate = new Date("2023-02-26");
-    const now = new Date();
+      const startDate = new Date("2023-02-26T00:00:00");
+      const now = new Date();
 
-    const totalMilliseconds = now.getTime() - startDate.getTime();
-    const totalMinutes = Math.floor(totalMilliseconds / (1000 * 60));
-    const totalDays = Math.floor(totalMilliseconds / (1000 * 60 * 60 * 24));
-    const totalMonths = Math.floor(totalDays / 30.44); // Média de dias em um mês
-    const totalYears = Math.floor(totalMonths / 12);
+      const currentDate = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate()
+      );
 
-    setTimeElapsed({
-      years: totalYears,
-      months: totalMonths % 12, // Resto de meses
-      days: totalDays % 30, // Resto de dias
-      minutes: totalMinutes,
-    });
+      const totalMilliseconds = currentDate.getTime() - startDate.getTime();
+      const totalDays = Math.floor(totalMilliseconds / (1000 * 60 * 60 * 24));
+      const totalMonths = Math.floor(totalDays / 30.44);
+      const totalYears = Math.floor(totalMonths / 12);
 
-  };
+      // Calculando horas, minutos e segundos restantes desde a última meia-noite
+      const hoursSinceMidnight = now.getHours();
+      const minutesSinceHour = now.getMinutes();
+      const secondsSinceMinute = now.getSeconds();
+
+      setTimeElapsed({
+        years: totalYears,
+        months: totalMonths % 12,
+        days: totalDays % 30,
+        hours: hoursSinceMidnight,
+        minutes: minutesSinceHour,
+        seconds: secondsSinceMinute,
+      });
+    };
 
     calculateTimeElapsed();
 
     // Atualizar a cada minuto
-        const interval = setInterval(calculateTimeElapsed, 60000);
-            return () => clearInterval(interval);
-              }, []);
-
+    const interval = setInterval(calculateTimeElapsed, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     async function listFiles() {
@@ -162,13 +174,14 @@ export default function QRCode() {
             <div className="pt-6 font-bold text-xl lg:text-2xl">
               Compartilhando momentos juntos há
             </div>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-2 p-4">
-              {
-              [
-                          { label: "Anos", value: timeElapsed.years },
-                                    { label: "Meses", value: timeElapsed.months },
-                                              { label: "Dias", value: timeElapsed.days },
-                                                        { label: "Minutos", value: timeElapsed.minutes },
+            <div className="grid grid-cols-2 lg:grid-cols-6 gap-4 mt-2 p-4">
+              {[
+                { label: "Anos", value: timeElapsed.years },
+                { label: "Meses", value: timeElapsed.months },
+                { label: "Dias", value: timeElapsed.days },
+                { label: "Horas", value: timeElapsed.hours },
+                { label: "Minutos", value: timeElapsed.minutes },
+                { label: "Segundos", value: timeElapsed.seconds },
               ].map((counter, index) => (
                 <motion.div
                   key={index}
