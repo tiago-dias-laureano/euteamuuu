@@ -5,7 +5,12 @@ type PlanCardProps = {
   isPopular?: boolean;
 };
 
-export default function PlanCard({ name, price, features, isPopular }: PlanCardProps) {
+export default function PlanCard({
+  name,
+  price,
+  features,
+  isPopular,
+}: PlanCardProps) {
   return (
     <div
       className={`flex flex-col justify-between bg-[#2A3445] p-8 rounded-lg shadow-lg ${
@@ -20,7 +25,10 @@ export default function PlanCard({ name, price, features, isPopular }: PlanCardP
       )}
       <div>
         <h3 className="text-2xl font-bold text-white mb-2">{name}</h3>
-        <p className="text-xl text-red-500 font-bold mb-4">{price}</p>
+        <div>
+          <p className="text-xl text-red-500 font-bold ">{price}</p>
+          <p className="text-xs mb-4">pagamento único</p>
+        </div>
         <ul className="space-y-2">
           {features.map((feature, index) => (
             <li key={index} className="flex items-center text-gray-400 text-sm">

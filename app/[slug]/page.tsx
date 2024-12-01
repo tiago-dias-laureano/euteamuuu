@@ -30,7 +30,7 @@ export default function QRCode() {
             <p className="pt-4 px-4">
               Eu dedico essa página à pessoa que eu mais amo nesse mundo! A
               Raianinha gameplays. A melhor coisa que me aconteceu no ano de
-              2023 foi ter te conhecido no dia 23/02/2023. Eu amo você muitão e
+              2023 foi ter te conhecido no dia 26/02/2023. Eu amo você muitão e
               não tenho nem como expressar tamanho sentimento. Espero que
               possamos ser felizes juntos. Te amo!
             </p>
