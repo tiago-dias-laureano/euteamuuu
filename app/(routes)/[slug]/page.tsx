@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
-import Header from "../components/Header";
-import HeartAnimation from "../components/HeartAnimation";
-import TimeElapsed from "../components/TimeElapsed";
-import SwiperGallery from "../components/SwiperGallery";
-import { useTimeElapsed } from "../hooks/useTimeElapsed";
-import { useImageUrls } from "../hooks/useImageUrls";
+import Header from "../../components/Header";
+import HeartAnimation from "../../components/HeartAnimation";
+import TimeElapsed from "../../components/TimeElapsed";
+import SwiperGallery from "../../components/SwiperGallery";
+import { useTimeElapsed } from "../../hooks/useTimeElapsed";
+import { useImageUrls } from "../../hooks/useImageUrls";
 
 export default function QRCode() {
   const timeElapsed = useTimeElapsed("2023-02-26T00:00:00");

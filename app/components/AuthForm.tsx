@@ -1,17 +1,21 @@
 "use client";
-
 import { useState } from "react";
-import Logo from "../components/Logo";
+import { useRouter } from "next/navigation";
 import supabase from "../supabase";
+import Logo from "./Logo";
+import useSessionCheck from "../hooks/useSessionCheck";
 
-export default function AuthForm() {
-  const [isRegister, setIsRegister] = useState(false); // Alternar entre registro e login
+const AuthForm = () => {
+  const [isRegister, setIsRegister] = useState(false);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const router = useRouter();
+
+  useSessionCheck();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,9 +38,7 @@ export default function AuthForm() {
 
         if (profileError) throw profileError;
 
-        setSuccess(
-          "Conta criada com sucesso! Verifique seu e-mail para confirmar."
-        );
+        setSuccess("Conta criada com sucesso! Faça seu login.");
       } else {
         const { error: signInError } = await supabase.auth.signInWithPassword({
           email,
@@ -44,6 +46,7 @@ export default function AuthForm() {
         });
         if (signInError) throw signInError;
         setSuccess("Login realizado com sucesso!");
+        router.push("/dashboard");
       }
     } catch (error) {
       if (error instanceof Error) {
@@ -57,7 +60,7 @@ export default function AuthForm() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#1E2637] via-[#232A42] to-[#1E2637] p-4">
       <div className="max-w-md w-full bg-[#2A3445] p-6 rounded-lg shadow-lg">
-        <div className=" flex justify-center py-4">
+        <div className="flex justify-center py-4">
           <Logo size="s" />
         </div>
         <h2 className="text-xl font-semibold text-center text-white">
@@ -136,4 +139,6 @@ export default function AuthForm() {
       </div>
     </div>
   );
-}
+};
+
+export default AuthForm;

@@ -15,8 +15,8 @@ export default function PlanCard({
   isPopular,
 }: PlanCardProps) {
   const { push } = useRouter();
-  function handleClickButton(id: number) {
-    push(`/auth/${id}`);
+  function handleClickButton() {
+    push(`/auth`);
   }
   return (
     <div
@@ -45,10 +45,7 @@ export default function PlanCard({
         </ul>
       </div>
       <button
-        onClick={() => {
-          const id = isPopular ? 1 : 0;
-          handleClickButton(id);
-        }}
+        onClick={handleClickButton}
         className="bg-red-500 text-white mt-6 py-2 px-4 rounded-lg"
       >
         Assine agora

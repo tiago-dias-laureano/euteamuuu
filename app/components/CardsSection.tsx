@@ -20,7 +20,6 @@ export default function CardsSection() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-8">
-        {/* Etapa 1 */}
         <Card
           Icon={LuPencil}
           title="1. Registre-se"
@@ -28,7 +27,6 @@ export default function CardsSection() {
           className="rounded-lg shadow-lg border border-gray-200 hover:shadow-2xl transition-shadow duration-300"
         />
 
-        {/* Etapa 2 */}
         <Card
           Icon={LuStar}
           title="2. Escolha seu plano"
@@ -36,7 +34,6 @@ export default function CardsSection() {
           className="rounded-lg shadow-lg border border-gray-200 hover:shadow-2xl transition-shadow duration-300"
         />
 
-        {/* Etapa 3 */}
         <Card
           Icon={LuFormInput}
           title="3. Personalize sua página"
@@ -44,7 +41,6 @@ export default function CardsSection() {
           className="rounded-lg shadow-lg border border-gray-200 hover:shadow-2xl transition-shadow duration-300"
         />
 
-        {/* Etapa 4 */}
         <Card
           Icon={LuShare2}
           title="4. Compartilhe o amor"
