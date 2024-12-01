@@ -3,6 +3,12 @@ import { useState } from "react";
 import Logo from "@/app/components/Logo";
 import SpotifySearch from "@/app/components/SpotifySearch";
 
+interface Song {
+  id: string;
+  name: string;
+  artists: { name: string }[];
+}
+
 export default function Auth() {
   const [step, setStep] = useState(1);
   const [celebrationType, setCelebrationType] = useState("");
@@ -11,17 +17,13 @@ export default function Auth() {
   const [startDate, setStartDate] = useState("");
   const [birthdayDate, setBirthdayDate] = useState("");
   const [photos, setPhotos] = useState<File[]>([]);
-  const [selectedSong, setSelectedSong] = useState<any>(null);
+  const [selectedSong, setSelectedSong] = useState<Song | null>(null);
 
   const handleNextStep = () => {
     setStep(step + 1);
   };
 
-  const handlePreviousStep = () => {
-    setStep(step - 1);
-  };
-
-  const handleSongSelection = (song: any) => {
+  const handleSongSelection = (song: Song) => {
     setSelectedSong(song);
   };
 
@@ -29,7 +31,6 @@ export default function Auth() {
     if (e.target.files) {
       const files = Array.from(e.target.files);
 
-      // Limita o número de fotos para o plano básico
       if (plan === "basic" && photos.length + files.length > 5) {
         alert("O plano básico permite até 5 fotos apenas.");
         return;
@@ -202,7 +203,9 @@ export default function Auth() {
                   <input
                     type="date"
                     value={birthdayDate}
-                    onChange={(e) => setBirthdayDate(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setBirthdayDate(e.target.value)
+                    }
                     className="w-full p-2 mt-2 border border-gray-300 rounded-md"
                   />
                 </div>
@@ -281,9 +284,10 @@ export default function Auth() {
                 </p>
                 <p>
                   <strong>Artista:</strong>{" "}
-                  {selectedSong.artists
-                    .map((artist: any) => artist.name)
-                    .join(", ")}
+                  {selectedSong &&
+                    selectedSong.artists
+                      .map((artist) => artist.name)
+                      .join(", ")}
                 </p>
               </div>
             )}
@@ -322,8 +326,8 @@ export default function Auth() {
                 <strong>Data de Início (Relacionamento):</strong> {startDate}
               </p>
               <p>
-                <strong>Música selecionada: </strong> {selectedSong.name} -{" "}
-                {selectedSong.artists[0].name}
+                <strong>Música selecionada: </strong> {selectedSong!.name} -{" "}
+                {selectedSong!.artists[0].name}
               </p>
               <p>
                 <strong>Fotos Enviadas:</strong> {photos.length}

@@ -2,13 +2,22 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { getSpotifyAccessToken } from "../utils/get-spotify-access-token";
 
+// Tipo para uma música retornada pela API do Spotify
+interface SpotifyTrack {
+  id: string;
+  name: string;
+  artists: {
+    name: string;
+  }[];
+}
+
 const SpotifySearch = ({
   onSelectSong,
 }: {
-  onSelectSong: (song: any) => void;
+  onSelectSong: (song: SpotifyTrack) => void;
 }) => {
   const [query, setQuery] = useState("");
-  const [songs, setSongs] = useState<any[]>([]);
+  const [songs, setSongs] = useState<SpotifyTrack[]>([]);
   const [accessToken, setAccessToken] = useState("");
 
   useEffect(() => {
@@ -24,17 +33,21 @@ const SpotifySearch = ({
     setQuery(searchQuery);
 
     if (searchQuery.length > 2) {
-      const { data } = await axios.get(`https://api.spotify.com/v1/search`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-        params: {
-          q: searchQuery,
-          type: "track",
-          limit: 5,
-        },
-      });
-      setSongs(data.tracks.items);
+      try {
+        const { data } = await axios.get(`https://api.spotify.com/v1/search`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+          params: {
+            q: searchQuery,
+            type: "track",
+            limit: 5,
+          },
+        });
+        setSongs(data.tracks.items);
+      } catch (error) {
+        console.error("Erro ao buscar músicas:", error);
+      }
     } else {
       setSongs([]);
     }
@@ -59,7 +72,7 @@ const SpotifySearch = ({
           >
             <p>{song.name}</p>
             <p className="text-sm text-gray-500">
-              {song.artists.map((artist: any) => artist.name).join(", ")}
+              {song.artists.map((artist) => artist.name).join(", ")}
             </p>
           </li>
         ))}

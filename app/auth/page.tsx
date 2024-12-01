@@ -21,7 +21,6 @@ export default function AuthForm() {
 
     try {
       if (isRegister) {
-        // Registro
         const { data: user, error: signUpError } = await supabase.auth.signUp({
           email,
           password,
@@ -29,7 +28,6 @@ export default function AuthForm() {
 
         if (signUpError) throw signUpError;
 
-        // Adicionar nome ao banco de dados
         const { error: profileError } = await supabase
           .from("profiles")
           .insert([{ id: user?.user?.id, name }]);
@@ -40,7 +38,6 @@ export default function AuthForm() {
           "Conta criada com sucesso! Verifique seu e-mail para confirmar."
         );
       } else {
-        // Login
         const { error: signInError } = await supabase.auth.signInWithPassword({
           email,
           password,
@@ -48,8 +45,10 @@ export default function AuthForm() {
         if (signInError) throw signInError;
         setSuccess("Login realizado com sucesso!");
       }
-    } catch (err: any) {
-      setError(err.message || "Algo deu errado.");
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message || "Algo deu errado.");
+      }
     } finally {
       setLoading(false);
     }
