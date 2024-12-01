@@ -1,3 +1,6 @@
+"use client";
+import { useRouter } from "next/navigation";
+
 type PlanCardProps = {
   name: string;
   price: string;
@@ -11,6 +14,10 @@ export default function PlanCard({
   features,
   isPopular,
 }: PlanCardProps) {
+  const { push } = useRouter();
+  function handleClickButton(id: number) {
+    push(`/auth/${id}`);
+  }
   return (
     <div
       className={`flex flex-col justify-between bg-[#2A3445] p-8 rounded-lg shadow-lg ${
@@ -37,7 +44,13 @@ export default function PlanCard({
           ))}
         </ul>
       </div>
-      <button className="bg-red-500 text-white mt-6 py-2 px-4 rounded-lg">
+      <button
+        onClick={() => {
+          const id = isPopular ? 1 : 0;
+          handleClickButton(id);
+        }}
+        className="bg-red-500 text-white mt-6 py-2 px-4 rounded-lg"
+      >
         Assine agora
       </button>
     </div>

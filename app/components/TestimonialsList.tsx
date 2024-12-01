@@ -9,7 +9,6 @@ export default function TestimonialsList() {
       ".animate-scroll-left, .animate-scroll-right"
     );
 
-    // Alterando o tipo do evento para MouseEvent
     const pauseAnimation = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
       target.style.animationPlayState = "paused";
@@ -20,9 +19,7 @@ export default function TestimonialsList() {
       target.style.animationPlayState = "running";
     };
 
-    // Usar addEventListener diretamente
     elements.forEach((el) => {
-      // Quando você usa addEventListener diretamente, tipagem do tipo de evento deve ser 'Event'
       el.addEventListener("mouseenter", (event) =>
         pauseAnimation(event as MouseEvent)
       );
@@ -31,7 +28,6 @@ export default function TestimonialsList() {
       );
     });
 
-    // Cleanup da remoção de eventos
     return () => {
       elements.forEach((el) => {
         el.removeEventListener("mouseenter", (event) =>
