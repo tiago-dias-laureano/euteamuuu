@@ -114,7 +114,7 @@ const AuthForm = () => {
         <div className="mt-4 text-center text-white">
           {isRegister ? (
             <>
-              Já possui uma conta?{" "}
+              Já possui uma conta?
               <button
                 type="button"
                 onClick={() => setIsRegister(false)}
@@ -125,7 +125,7 @@ const AuthForm = () => {
             </>
           ) : (
             <>
-              Não possui uma conta?{" "}
+              Não possui uma conta?
               <button
                 type="button"
                 onClick={() => setIsRegister(true)}

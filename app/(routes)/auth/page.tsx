@@ -1,4 +1,3 @@
-// pages/index.tsx
 import AuthForm from "../../components/AuthForm";
 
 const IndexPage = () => {
