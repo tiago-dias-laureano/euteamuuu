@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import TestimonialsCard from "./TestimonialsCard";
 
 import { feedbacks } from "../utils/feedbacks";

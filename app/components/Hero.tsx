@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
 import Phone from "./Phone";

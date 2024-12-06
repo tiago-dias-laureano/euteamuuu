@@ -1,6 +1,6 @@
 "use client";
 
-import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import { initMercadoPago } from "@mercadopago/sdk-react";
 import { useEffect, useState } from "react";
 import { generatePreference } from "@/app/mercadopago";
 initMercadoPago("APP_USR-75989405-a63a-4301-9bcf-4b9b08553b18");
