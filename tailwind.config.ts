@@ -14,8 +14,8 @@ export default {
       },
       keyframes: {
         scrollLeft: {
-          "0%": { transform: "translateX(100%)" }, // Começa fora da tela (à direita)
-          "100%": { transform: "translateX(-100%)" }, // Sai pela esquerda
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(-100%)" },
         },
         scrollRight: {
           "0%": { transform: "translateX(-100%)" },
@@ -23,10 +23,22 @@ export default {
         },
       },
       animation: {
-        "scroll-left": "scrollLeft 25s linear infinite",
-        "scroll-right": "scrollRight 25s linear infinite",
+        "scroll-left": "scrollRight 30s linear infinite",
+        "scroll-right": "scrollLeft 30s linear infinite",
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addBase }) {
+      addBase({
+        html: {
+          scrollBehavior: "smooth",
+          overscrollBehavior: "contain", // Evita movimentos bruscos ao atingir os limites
+        },
+        body: {
+          transition: "transform 0.3s ease-out", // Adiciona suavidade extra em interações rápidas
+        },
+      });
+    },
+  ],
 } satisfies Config;
